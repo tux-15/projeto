@@ -36,7 +36,7 @@
 }
 
 .body {
-    margin: 25vh;
+    margin: 0vh;
     display: flex;
     flex-direction: column;
     justify-content: center;

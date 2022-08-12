@@ -1,6 +1,7 @@
 import style from "../styles/main.module.css"
 import Header from "../components/header"
 import Tabela from "../components/tabela"
+import SelecionarOP from "../components/selecionarOP"
 
 export default function PaginaTabela(dados) {
 
@@ -15,6 +16,7 @@ export default function PaginaTabela(dados) {
         <div className={style.main}>
                 <Header subtitulo="Tabelas" voltar={true} />
                 <div className={style.body}>
+                    <SelecionarOP></SelecionarOP>
                     <Tabela dados={dados}></Tabela>
                 </div>
         </div>
