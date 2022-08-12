@@ -1,0 +1,23 @@
+.tabela{
+    background-color: #EE6C4D;
+    border-radius: 10px 20px 10px 10px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.head th{
+    padding: 10px;
+    /* border-bottom: 1px solid #ddd; */
+    background-color: #EE6C4D;
+}
+
+.body td{
+    padding: 0.8%;
+}
+
+.body tr{
+    background-color: darksalmon;
+}
+.body tr:hover{
+    background-color: #e93c11;
+}
