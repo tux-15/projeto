@@ -4,7 +4,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var DataBase = require('./classes/db')
-var fs = require('fs/promises')
+const fs = require('fs').promises;
+const csv = require ('csvtojson')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -20,13 +21,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-const database = "db_teste";
+// const database = "db_teste";
 
-var db = new DataBase(
-    'localhost', 
-    'user-teste', 
-    '12345678',
-    database);
+// var db = new DataBase(
+//     'localhost',
+//     'user-teste',
+//     '12345678',
+//     database);
 
 // var values = [
 //     ['John', 'Highway 71'],
@@ -45,7 +46,7 @@ var db = new DataBase(
 //     ['Viola', 'Sideway 1633']
 // ];
 
-db.startConnection();
+// db.startConnection();
 // db.updateTable("db_teste", "endereco", "avião", "Valley 345");
 // db.dropTable("db_teste")
 // db.deleteFromDataBase(database, "endereco", "maçã");
@@ -56,24 +57,18 @@ db.startConnection();
 // db.alterTable("tabledb", "ADD COLUMN id INT AUTO_INCREMENT PRIMARY KEY");
 // db.createTable("db_teste", "nome VARCHAR(255), endereco VARCHAR(255)");
 // db.createDatabase("db_teste");
-db.endConnection();
+// db.endConnection();
 
-// async function readTable2(){
-//     const data = await  fs.readFile("C:/Users/efilho2/Downloads/K97_OP10.txt",{encoding:'utf8'});
-//     return data;
-// }
-
-async function readTable(){
-    return new Promise((resolve, reject) =>{
-        const data = fs.readFile("C:/Users/efilho2/Downloads/K97_OP10.txt",{encoding:'utf8'});
-        if(err){
-            reject(err);
-        }
-        resolve(data);
+const read = async () => {
+    const data = await fs.readFile("C:/Users/efilho2/Downloads/Projeto/K97_OP10.txt", encoding='utf8');
+    return data;
+  }
+dados = read();
+dados.then(dados => {
+    dadoscsv = csv().fromString(dados).then((jsonData)=>{
+        console.log(dadoscsv)
     })
-}
-
-console.log(readTable())
-
+    // console.log(dados);
+})
 
 module.exports = app;
