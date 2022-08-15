@@ -1,1 +1,2 @@
-require('./config/server')
+require("./server.js")
+// require("./db");

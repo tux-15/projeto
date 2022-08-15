@@ -21,3 +21,18 @@
 .navegadorMini:hover{
     background-color: #ec4015;
 }
+
+.submitButton{
+    padding: 10px 20px;
+    margin: 20px;
+    font-size: 1.5rem;
+    background-color: #EE6C4D;
+    border-radius: 20px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+}
+
+.submitButton:hover{
+    background-color: #ec4015;
+}
