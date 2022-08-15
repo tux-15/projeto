@@ -79,7 +79,7 @@ class DataBase {
     }
 
     insertIntoTable(table, columns, values) {
-        const sql = "INSERT INTO" + " " + table + " (" + columns + ") " +
+        const sql = "INSERT INTO " + table + " (" + columns + ") " +
             "VALUES" + " " + "(" + values + ")";
         this.query(sql, "1 record inserted.");
     }
@@ -106,7 +106,7 @@ class DataBase {
     }
 
     async whereInTable(table, username, password) {
-        const sql = "SELECT * FROM db_teste WHERE username = ? AND password = ?";
+        const sql = "SELECT * FROM " + table + " WHERE username = ? AND password = ?";
         const results = await this.con.promise().query(sql, [username, password]);
         return results[0];
     }
@@ -130,7 +130,7 @@ class DataBase {
     }
 }
 
-// const database = "db_teste";
+// const database = "sistemaTabelas";
 
 // var db = new DataBase(
 //     'localhost',
@@ -138,8 +138,8 @@ class DataBase {
 //     '12345678',
 //     database);
 
-// db.createDatabase("db_teste");
-// db.createTable("db_teste", "username VARCHAR(255), password VARCHAR(255), email VARCHAR(100)");
+// db.createDatabase("sistemaTabelas");
+// db.createTable("users", "username VARCHAR(255), email VARCHAR(255), email_verified_at TIMESTAMP, password VARCHAR(255), created_at TIMESTAMP");
 // db.startConnection();
 // db.updateTable("db_teste", "endereco", "avião", "Valley 345");
 // db.dropTable("db_teste")
@@ -147,7 +147,7 @@ class DataBase {
 // db.whereInTable("db_teste", "endereco", "maçã");
 // db.selectFromTable("db_teste", "*");
 // db.insertMultipleIntoTable("db_teste", "nome, endereco", values);
-// db.insertIntoTable("db_teste", "username, password, email", "'usuario', 'senha', 'user@user'");
+// db.insertIntoTable("users", "username, password, email", "'Eduardo', '1234', 'efilho2@visteon.com'");
 // db.alterTable("tabledb", "ADD COLUMN id INT AUTO_INCREMENT PRIMARY KEY");
 // db.endConnection();
 

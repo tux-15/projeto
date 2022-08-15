@@ -17,7 +17,7 @@ var db = new DataBase(
 	'localhost',
 	'user-teste',
 	'12345678',
-	'db_teste');
+	'sistemaTabelas');
 
 db.startConnection();
 
@@ -44,7 +44,7 @@ server.post('/auth', function (request, response) {
 	// Ensure the input fields exists and are not empty
 	if (username && password) {
 		(async function () {
-			result = await db.whereInTable("db_teste", username, password);
+			result = await db.whereInTable("users", username, password);
 			console.log(result);
 			if (result.length > 0) {
 				// Authenticate the user
