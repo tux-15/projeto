@@ -14,10 +14,12 @@ server.use(express.static(path.join(__dirname, 'static')));
 
 // const database = "db_teste";
 var db = new DataBase(
-    'localhost',
-    'user_teste',
-    '12345678',
-    'db_teste');
+	'localhost',
+	'user-teste',
+	'12345678',
+	'db_teste');
+
+db.startConnection();
 
 server.use(session({
 	secret: 'secret',
@@ -31,28 +33,31 @@ server.use(session({
 // 	response.sendFile(path.join(__dirname + '/login.html'));
 // });
 
-server.post('/auth', function(request, response) {
+server.post('/auth', function (request, response) {
 	// Capture the input fields
 	let username = request.body.username;
 	let password = request.body.password;
+	console.log(request.body);
+	console.log(request.body.username);
+	console.log(request.body.password);
+
 	// Ensure the input fields exists and are not empty
 	if (username && password) {
-		// Execute SQL query that'll select the account from the database based on the specified username and password
-		db.query('SELECT * FROM db_teste WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
-			// If there is an issue with the query, output the error
-			if (error) throw error;
-			// If the account exists
-			if (results.length > 0) {
+		(async function () {
+			result = await db.whereInTable("db_teste", username, password);
+			console.log(result);
+			if (result.length > 0) {
 				// Authenticate the user
 				request.session.loggedin = true;
 				request.session.username = username;
 				// Redirect to home page
-				response.redirect('/paginaTabela');
+				console.log("User logged")
+				response.redirect('http://localhost:3000/paginaTabela/');
 			} else {
 				response.send('Incorrect Username and/or Password!');
-			}			
+			}
 			response.end();
-		});
+		})();
 	} else {
 		response.send('Please enter Username and Password!');
 		response.end();
@@ -60,5 +65,5 @@ server.post('/auth', function(request, response) {
 });
 
 server.listen(port, function () {
-    console.log(`Backend started on port ${port}`);
+	console.log(`Backend started on port ${port}`);
 })

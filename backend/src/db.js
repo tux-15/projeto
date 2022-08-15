@@ -1,4 +1,4 @@
-const mysql      = require('mysql');
+const mysql = require('mysql2');
 // const connection = mysql.createConnection({
 //   host     : 'localhost',
 //   port     : 3003,
@@ -101,21 +101,19 @@ class DataBase {
         this.con.query(sql, function (err, result, fields) {
             if (err) throw err;
             console.log(result);
-            return result;
+            return result.toString();
         });
     }
 
-    whereInTable(table, key, value) {
-        const sql = "SELECT * FROM " + table + " WHERE " + key + " = " + "'" + value + "'";
-        this.con.query(sql, function (err, result) {
-            if (err) throw err;
-            console.log(result);
-        })
+    async whereInTable(table, username, password) {
+        const sql = "SELECT * FROM db_teste WHERE username = ? AND password = ?";
+        const results = await this.con.promise().query(sql, [username, password]);
+        return results[0];
     }
 
     updateTable(table, key, value, oldValue) {
-        const sql = "UPDATE " + table + " SET " + key + " = " + 
-        "'" + value + "' " + "WHERE " + key + " =" + " '" + oldValue + "' " ;
+        const sql = "UPDATE " + table + " SET " + key + " = " +
+            "'" + value + "' " + "WHERE " + key + " =" + " '" + oldValue + "' ";
         this.con.query(sql, function (err, result) {
             if (err) throw err;
             console.log(result.affectedRows + " record(s) updated");
@@ -136,7 +134,7 @@ class DataBase {
 
 // var db = new DataBase(
 //     'localhost',
-//     'user_teste',
+//     'user-teste',
 //     '12345678',
 //     database);
 
@@ -149,7 +147,7 @@ class DataBase {
 // db.whereInTable("db_teste", "endereco", "maçã");
 // db.selectFromTable("db_teste", "*");
 // db.insertMultipleIntoTable("db_teste", "nome, endereco", values);
-// db.insertIntoTable("db_teste", "username, password, email", "'teste_user', 'senha_user', 'user@user'");
+// db.insertIntoTable("db_teste", "username, password, email", "'usuario', 'senha', 'user@user'");
 // db.alterTable("tabledb", "ADD COLUMN id INT AUTO_INCREMENT PRIMARY KEY");
 // db.endConnection();
 

@@ -1,9 +1,10 @@
 import style from "../styles/navegador.module.css"
+const axios = require('axios');
 
 export default function TextForm(props) {
     return (
         <div>
-            <form action="/auth" method="post"
+            <form action="http://localhost:3003/auth" method="post"
                 style={{
                     marginTop: "10px",
                     display: "flex",
@@ -17,7 +18,7 @@ export default function TextForm(props) {
                 <label for="username"></label>
 
                 <input type="text"
-                    name="Usuário"
+                    name="username"
                     placeholder=" "
                     id="username" required />
 
@@ -26,7 +27,7 @@ export default function TextForm(props) {
                 <label for="password"></label>
 
                 <input type="password"
-                    name="Senha"
+                    name="password"
                     placeholder="Digite sua senha"
                     id="password" required />
 
