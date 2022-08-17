@@ -130,13 +130,13 @@ class DataBase {
     }
 }
 
-// const database = "sistemaTabelas";
+const database = "sistemaTabelas";
 
-// var db = new DataBase(
-//     'localhost',
-//     'user-teste',
-//     '12345678',
-//     database);
+var db = new DataBase(
+    'localhost',
+    'user-teste',
+    '12345678',
+    database);
 
 // db.createDatabase("sistemaTabelas");
 // db.createTable("users", "username VARCHAR(255), email VARCHAR(255), email_verified_at TIMESTAMP, password VARCHAR(255), created_at TIMESTAMP");
@@ -151,4 +151,4 @@ class DataBase {
 // db.alterTable("tabledb", "ADD COLUMN id INT AUTO_INCREMENT PRIMARY KEY");
 // db.endConnection();
 
-module.exports = DataBase;
+module.exports = db;

@@ -1,5 +1,4 @@
 import style from "../styles/navegador.module.css"
-const axios = require('axios');
 
 export default function TextForm(props) {
     return (
@@ -9,7 +8,6 @@ export default function TextForm(props) {
                     marginTop: "10px",
                     display: "flex",
                     flexDirection: "column",
-                    // justifyContent: "center",
                     alignItems: "center",
                 }}>
 
@@ -22,7 +20,7 @@ export default function TextForm(props) {
                     placeholder=" "
                     id="username" required />
 
-                <div style={{marginTop:"10px"}}>Senha</div>
+                <div style={{ marginTop: "10px" }}>Senha</div>
 
                 <label for="password"></label>
 
@@ -35,11 +33,6 @@ export default function TextForm(props) {
                     <input className={style.submitButton}
                         type="submit" value="Entrar" />
                 </div>
-                {/* <Navegador 
-                    destino="/paginaTabela" 
-                    texto="Entrar" 
-                    tipo={style.navegadorMini}>
-                    </Navegador> */}
             </form>
         </div>
     )
