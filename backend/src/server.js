@@ -13,10 +13,12 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-db.sequelize.sync({force: true}).then(()=>{
-    console.log("Drop and resync database");
-    initial();
-});
+// db.sequelize.sync({force: false}).then(()=>{
+//     console.log("Drop and resync database");
+//     initial();
+// });
+
+db.sequelize.sync();
 
 function initial() {
     Role.create({
