@@ -23,6 +23,7 @@ db.sequelize = sequelize;
 
 db.user = require("../models/user.model")(Sequelize, sequelize);
 db.role = require("../models/role.model")(Sequelize, sequelize);
+db.line = require('../models/line.model')(Sequelize, sequelize);
 
 db.role.belongsToMany(db.user, {
     through: "user_roles",
